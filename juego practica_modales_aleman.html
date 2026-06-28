@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Práctica de modales en alemán</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --ok: #16a34a;
+      --bad: #dc2626;
+      --soft: #e0ecff;
+      --border: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #edf4ff, var(--bg));
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .wide { grid-column: 1 / -1; }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 14px;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    th {
+      background: var(--soft);
+      color: #1e3a8a;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    td:first-child, th:first-child { font-weight: 700; text-align: left; }
+
+    .exercise {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .prompt {
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .prompt strong {
+      color: var(--primary-dark);
+      font-size: 1.45rem;
+    }
+
+    input, select, button {
+      font: inherit;
+      border-radius: 12px;
+    }
+
+    input, select {
+      border: 1px solid #cbd5e1;
+      padding: 13px 14px;
+      width: 100%;
+      background: white;
+    }
+
+    input:focus, select:focus {
+      outline: 3px solid rgba(37, 99, 235, 0.2);
+      border-color: var(--primary);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      padding: 12px 16px;
+      cursor: pointer;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      transition: 0.15s transform, 0.15s background;
+    }
+
+    button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    button.secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    button.secondary:hover { background: #d1d5db; }
+
+    .feedback {
+      min-height: 36px;
+      font-weight: 700;
+      padding: 10px 12px;
+      border-radius: 12px;
+    }
+
+    .feedback.ok {
+      color: var(--ok);
+      background: #dcfce7;
+    }
+
+    .feedback.bad {
+      color: var(--bad);
+      background: #fee2e2;
+    }
+
+    .score {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .mini {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .mini b { color: var(--primary-dark); }
+    .mini span { display: block; color: var(--muted); margin-top: 4px; font-size: 0.9rem; }
+
+    .hidden { display: none; }
+
+    @media (max-width: 780px) {
+      body { padding: 14px; }
+      .grid { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr 1fr; }
+      table { font-size: 0.78rem; }
+      th, td { padding: 7px 5px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Modalverben Trainer</h1>
+      <p class="subtitle">Practica dürfen, möchten, wollen, können y müssen en alemán.</p>
+    </header>
+
+    <section class="grid">
+      <div class="card">
+        <h2>1. Practica rápido</h2>
+        <div class="exercise">
+          <label>
+            Tipo de ejercicio
+            <select id="mode">
+              <option value="conjugation">Escribir la conjugación</option>
+              <option value="meaning">Elegir el significado</option>
+            </select>
+          </label>
+
+          <div class="prompt" id="prompt"></div>
+
+          <div id="answerArea">
+            <input id="answer" autocomplete="off" placeholder="Escribe la respuesta, por ejemplo: kannst" />
+          </div>
+
+          <div id="meaningArea" class="hidden">
+            <select id="meaningSelect">
+              <option value="">Elige el significado</option>
+              <option value="poder/estar permitido">poder / estar permitido</option>
+              <option value="querer cortésmente">querer, de forma cortés</option>
+              <option value="querer">querer</option>
+              <option value="poder/ser capaz">poder / ser capaz</option>
+              <option value="tener que">tener que</option>
+            </select>
+          </div>
+
+          <div class="buttons">
+            <button onclick="checkAnswer()">Comprobar</button>
+            <button class="secondary" onclick="newQuestion()">Nueva pregunta</button>
+            <button class="secondary" onclick="showHint()">Pista</button>
+          </div>
+
+          <div id="feedback" class="feedback"></div>
+          <div class="score">
+            <div class="pill">✅ Correctas: <span id="correct">0</span></div>
+            <div class="pill">❌ Fallos: <span id="wrong">0</span></div>
+            <div class="pill">🎯 Racha: <span id="streak">0</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>2. Mini chuleta</h2>
+        <div class="cards">
+          <div class="mini"><b>dürfen</b><span>poder / estar permitido</span></div>
+          <div class="mini"><b>möchten</b><span>querer cortésmente</span></div>
+          <div class="mini"><b>wollen</b><span>querer</span></div>
+          <div class="mini"><b>können</b><span>poder / ser capaz</span></div>
+          <div class="mini"><b>müssen</b><span>tener que</span></div>
+        </div>
+      </div>
+
+      <div class="card wide">
+        <h2>Tabla completa</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Persona</th>
+              <th>dürfen</th>
+              <th>möchten</th>
+              <th>wollen</th>
+              <th>können</th>
+              <th>müssen</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const data = {
+      "ich":      { "dürfen": "darf",   "möchten": "möchte",  "wollen": "will",   "können": "kann",   "müssen": "muss" },
+      "du":       { "dürfen": "darfst", "möchten": "möchtest","wollen": "willst", "können": "kannst", "müssen": "musst" },
+      "er/sie/es":{ "dürfen": "darf",   "möchten": "möchte",  "wollen": "will",   "können": "kann",   "müssen": "muss" },
+      "wir":      { "dürfen": "dürfen", "möchten": "möchten", "wollen": "wollen", "können": "können", "müssen": "müssen" },
+      "ihr":      { "dürfen": "dürft",  "möchten": "möchtet", "wollen": "wollt",  "können": "könnt",  "müssen": "müsst" },
+      "sie/Sie":  { "dürfen": "dürfen", "möchten": "möchten", "wollen": "wollen", "können": "können", "müssen": "müssen" }
+    };
+
+    const meanings = {
+      "dürfen": "poder/estar permitido",
+      "möchten": "querer cortésmente",
+      "wollen": "querer",
+      "können": "poder/ser capaz",
+      "müssen": "tener que"
+    };
+
+    const people = Object.keys(data);
+    const verbs = Object.keys(meanings);
+    let current = {};
+    let correct = 0;
+    let wrong = 0;
+    let streak = 0;
+
+    function fillTable() {
+      const body = document.getElementById("tableBody");
+      body.innerHTML = people.map(person => `
+        <tr>
+          <td>${person}</td>
+          ${verbs.map(verb => `<td>${data[person][verb]}</td>`).join("")}
+        </tr>
+      `).join("");
+    }
+
+    function randomItem(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function normalize(text) {
+      return text.trim().toLowerCase();
+    }
+
+    function newQuestion() {
+      const mode = document.getElementById("mode").value;
+      const person = randomItem(people);
+      const verb = randomItem(verbs);
+      current = { mode, person, verb, answer: data[person][verb], meaning: meanings[verb] };
+
+      document.getElementById("feedback").className = "feedback";
+      document.getElementById("feedback").textContent = "";
+      document.getElementById("answer").value = "";
+      document.getElementById("meaningSelect").value = "";
+
+      if (mode === "conjugation") {
+        document.getElementById("prompt").innerHTML = `Conjuga <strong>${verb}</strong> con <strong>${person}</strong>`;
+        document.getElementById("answerArea").classList.remove("hidden");
+        document.getElementById("meaningArea").classList.add("hidden");
+        setTimeout(() => document.getElementById("answer").focus(), 50);
+      } else {
+        document.getElementById("prompt").innerHTML = `¿Qué significa <strong>${verb}</strong>?`;
+        document.getElementById("answerArea").classList.add("hidden");
+        document.getElementById("meaningArea").classList.remove("hidden");
+      }
+    }
+
+    function checkAnswer() {
+      const feedback = document.getElementById("feedback");
+      let userAnswer;
+      let expected;
+
+      if (current.mode === "conjugation") {
+        userAnswer = normalize(document.getElementById("answer").value);
+        expected = normalize(current.answer);
+      } else {
+        userAnswer = document.getElementById("meaningSelect").value;
+        expected = current.meaning;
+      }
+
+      if (!userAnswer) {
+        feedback.className = "feedback bad";
+        feedback.textContent = "Escribe o elige una respuesta primero.";
+        return;
+      }
+
+      if (userAnswer === expected) {
+        correct++;
+        streak++;
+        feedback.className = "feedback ok";
+        feedback.textContent = `¡Correcto! ${current.person} + ${current.verb} = ${current.answer}`;
+        updateScore();
+        setTimeout(newQuestion, 900);
+      } else {
+        wrong++;
+        streak = 0;
+        feedback.className = "feedback bad";
+        feedback.textContent = `Casi. La respuesta correcta es: ${current.mode === "conjugation" ? current.answer : current.meaning}`;
+        updateScore();
+      }
+    }
+
+    function showHint() {
+      const feedback = document.getElementById("feedback");
+      feedback.className = "feedback";
+      if (current.mode === "conjugation") {
+        feedback.textContent = `Pista: empieza por “${current.answer.slice(0, 2)}...”`;
+      } else {
+        feedback.textContent = `Pista: mira la mini chuleta de ${current.verb}.`;
+      }
+    }
+
+    function updateScore() {
+      document.getElementById("correct").textContent = correct;
+      document.getElementById("wrong").textContent = wrong;
+      document.getElementById("streak").textContent = streak;
+    }
+
+    document.getElementById("answer").addEventListener("keydown", event => {
+      if (event.key === "Enter") checkAnswer();
+    });
+
+    document.getElementById("mode").addEventListener("change", newQuestion);
+
+    fillTable();
+    newQuestion();
+  </script>
+</body>
+</html>
