@@ -1,0 +1,11 @@
+# macOS System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Application-specific cache/settings
+Icon?
+ehthumbs.db
+Thumbs.db
